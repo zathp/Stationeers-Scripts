@@ -1,0 +1,112 @@
+alias furn1 d1
+alias furn2 d2
+alias furn3 d3
+alias furn4 d4
+alias pwr d5
+
+alias sum r0
+alias isAct r1
+alias input r2
+alias on r1
+
+start:
+move sum 0
+bdseal pwr pcon
+bdnsal pwr pcon2
+bdseal furn0 f0
+bdseal furn1 f1
+bdseal furn2 f2
+bdseal furn3 f3
+bdseal furn4 f4
+s db Setting sum
+j start
+
+pcon:
+l on pwr Setting
+s db Setting 20
+j ra
+
+pcon2:
+move on 1
+j ra
+
+f0:
+bnez on s0
+s furn0 On 0
+j ra
+s0:
+l isAct furn0 On
+brnez isAct 2
+s furn0 On 1
+ls input furn0 0 Occupied
+beqz input ra
+l isAct furn0 Activate
+s db Setting isAct
+brnez isAct 2
+s furn0 Activate 1
+add sum sum 1
+j ra
+
+f1:
+bnez on s1
+s furn1 On 0
+j ra
+s1:
+l isAct furn1 On
+brnez isAct 2
+s furn1 On 1
+ls input furn1 0 Occupied
+beqz input ra
+l isAct furn1 Activate
+brnez isAct 2
+s furn1 Activate 1
+add sum sum 1
+j ra
+
+f2:
+bnez on s2
+s furn2 On 0
+j ra
+s2:
+l isAct furn2 On
+brnez isAct 2
+s furn2 On 1
+ls input furn2 0 Occupied
+beqz input ra
+l isAct furn2 Activate
+brnez isAct 2
+s furn2 Activate 1
+add sum sum 1
+j ra
+
+f3:
+bnez on s3
+s furn3 On 0
+j ra
+s3:
+l isAct furn3 On
+brnez isAct 2
+s furn3 On 1
+ls input furn3 0 Occupied
+beqz input ra
+l isAct furn3 Activate
+brnez isAct 2
+s furn3 Activate 1
+add sum sum 1
+j ra
+
+f4:
+bnez on s4
+s furn4 On 0
+j ra
+s4:
+l isAct furn4 On
+brnez isAct 2
+s furn4 On 1
+ls input furn4 0 Occupied
+beqz input ra
+l isAct furn4 Activate
+brnez isAct 2
+s furn4 Activate 1
+add sum sum 1
+j ra
